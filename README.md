@@ -12,9 +12,7 @@ This project aims to faithfully duplicate the aesthetic and layout of Winamp 2.x
 The prototype recreates the classic Winamp main window (dark metallic panels, bevelled buttons, green/yellow LED matrix display, spectrum visualization) alongside a Pitchfork/PaceMaker-style plugin window with high-precision Speed, Pitch, and Tempo sliders, plus a dedicated playlist window (pure audio playback, no video screen display in this iteration).
 
 ![Winamp YouTube Player UI Prototype](screenshot-ui.png)
-
 <br>
-
 *(Live screenshot of the current HTML5/CSS prototype in this repo)*
 
 ---
