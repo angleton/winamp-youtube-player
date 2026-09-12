@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winamp Web Player (with Pitchfork Plugin UI)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="winamp-container">
+    
+    <!-- MAIN PLAYER WINDOW -->
+    <div class="winamp-window main-window">
+      <!-- Title Bar -->
+      <div class="title-bar">
+        <div class="title-bar-text">WINAMP - YOUTUBE PLAYER</div>
+        <div class="title-bar-controls">
+          <button class="win-btn minimize" aria-label="Minimize">_</button>
+          <button class="win-btn close" aria-label="Close">X</button>
+        </div>
+      </div>
+
+      <!-- Main Display Screen (Green/Yellow LCD) -->
+      <div class="display-panel">
+        <div class="display-left">
+          <div class="timer-display">
+            <span class="digit-minus"></span>
+            <span class="digits" id="time-display">00:00</span>
+          </div>
+          <div class="audio-info">
+            <span class="info-badge active">KBPS 128</span>
+            <span class="info-badge active">KHZ 44</span>
+            <span class="info-badge active">STEREO</span>
+          </div>
+        </div>
+        <div class="display-right">
+          <div class="marquee-container">
+            <div class="marquee-text" id="track-title">1. Retro YouTube Player - Winamp 2.x Classic Theme</div>
+          </div>
+          <div class="vis-container">
+            <div class="spectrum-analyzer">
+              <div class="bar" style="--h: 40%"></div>
+              <div class="bar" style="--h: 70%"></div>
+              <div class="bar" style="--h: 90%"></div>
+              <div class="bar" style="--h: 60%"></div>
+              <div class="bar" style="--h: 35%"></div>
+              <div class="bar" style="--h: 80%"></div>
+              <div class="bar" style="--h: 100%"></div>
+              <div class="bar" style="--h: 50%"></div>
+              <div class="bar" style="--h: 20%"></div>
+              <div class="bar" style="--h: 65%"></div>
+              <div class="bar" style="--h: 85%"></div>
+              <div class="bar" style="--h: 45%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Position / Track Scrubber -->
+      <div class="scrubber-panel">
+        <input type="range" class="winamp-slider scrubber" min="0" max="100" value="0">
+      </div>
+
+      <!-- Control Panel -->
+      <div class="control-panel">
+        <!-- Transport Buttons -->
+        <div class="transport-buttons">
+          <button class="transport-btn prev" title="Previous Track">⏮</button>
+          <button class="transport-btn play" title="Play">▶</button>
+          <button class="transport-btn pause" title="Pause">⏸</button>
+          <button class="transport-btn stop" title="Stop">⏹</button>
+          <button class="transport-btn next" title="Next Track">⏭</button>
+          <button class="transport-btn eject" title="Open URL / Eject">⏏</button>
+        </div>
+
+        <!-- Volume & Balance Sliders -->
+        <div class="sliders-group">
+          <div class="slider-row">
+            <label>VOL</label>
+            <input type="range" class="winamp-slider volume" min="0" max="100" value="80">
+          </div>
+          <div class="slider-row">
+            <label>BAL</label>
+            <input type="range" class="winamp-slider balance" min="-50" max="50" value="0">
+          </div>
+        </div>
+
+        <!-- Toggle Buttons (EQ, PL, Pitchfork) -->
+        <div class="toggle-buttons">
+          <button class="toggle-btn active" id="btn-eq">EQ</button>
+          <button class="toggle-btn active" id="btn-pl">PL</button>
+          <button class="toggle-btn active" id="btn-pf">PITCH</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PITCHFORK / PACEMAKER PLUGIN WINDOW -->
+    <div class="winamp-window pitchfork-window">
+      <div class="title-bar">
+        <div class="title-bar-text">PITCHFORK / PACEMAKER - TEMPO & SPEED CONTROL</div>
+        <div class="title-bar-controls">
+          <button class="win-btn minimize" aria-label="Minimize">_</button>
+        </div>
+      </div>
+
+      <div class="plugin-body">
+        <div class="plugin-header">
+          <span class="plugin-status-led active"></span>
+          <span class="plugin-title">HIGH-GRANULARITY PLAYBACK CONTROL</span>
+          <button class="plugin-reset-btn" id="btn-reset-all">RESET ALL</button>
+        </div>
+
+        <div class="plugin-sliders-grid">
+          <!-- SPEED CONTROL -->
+          <div class="plugin-control-card">
+            <div class="card-header">
+              <span class="card-label">PLAYBACK SPEED</span>
+              <span class="card-value" id="val-speed">1.000x</span>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" class="winamp-slider speed-slider" min="0.25" max="4.00" step="0.005" value="1.00">
+            </div>
+            <div class="preset-pills">
+              <button class="preset-pill">0.5x</button>
+              <button class="preset-pill active">1.0x</button>
+              <button class="preset-pill">1.25x</button>
+              <button class="preset-pill">1.5x</button>
+              <button class="preset-pill">2.0x</button>
+            </div>
+          </div>
+
+          <!-- PITCH CONTROL -->
+          <div class="plugin-control-card">
+            <div class="card-header">
+              <span class="card-label">PITCH (SEMITONES)</span>
+              <span class="card-value" id="val-pitch">0.0 st</span>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" class="winamp-slider pitch-slider" min="-12.0" max="12.0" step="0.1" value="0.0">
+            </div>
+            <div class="card-options">
+              <label class="checkbox-label">
+                <input type="checkbox" id="chk-preserve-pitch" checked>
+                <span>Preserve Pitch (Key Lock)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- TEMPO CONTROL -->
+          <div class="plugin-control-card">
+            <div class="card-header">
+              <span class="card-label">TEMPO (TIME STRETCH)</span>
+              <span class="card-value" id="val-tempo">0.0%</span>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" class="winamp-slider tempo-slider" min="-50.0" max="100.0" step="0.5" value="0.0">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EQUALIZER & PLAYLIST WINDOW -->
+    <div class="winamp-window playlist-window">
+      <div class="title-bar">
+        <div class="title-bar-text">WINAMP PLAYLIST & EMBEDDED SCREEN</div>
+        <div class="title-bar-controls">
+          <button class="win-btn minimize" aria-label="Minimize">_</button>
+        </div>
+      </div>
+
+      <div class="playlist-body">
+        <!-- Embedded Video Screen Container -->
+        <div class="video-container">
+          <div class="video-placeholder">
+            <div class="video-screen-icon">📺</div>
+            <p>YOUTUBE EMBED PLAYER DISPLAY</p>
+            <span class="subtext">(IFrame mounts here)</span>
+          </div>
+        </div>
+
+        <!-- Playlist Tracks List -->
+        <div class="playlist-list">
+          <div class="playlist-item active">1. Retro Synthwave - Winamp Theme [03:45]</div>
+          <div class="playlist-item">2. Chiptune Symphony No. 9 [04:12]</div>
+          <div class="playlist-item">3. HTML5 & Wasm Audio Demo [02:30]</div>
+          <div class="playlist-item">4. Pitchfork High Precision Speed Test [05:00]</div>
+        </div>
+      </div>
+
+      <div class="playlist-footer">
+        <button class="pl-btn">+ ADD URL</button>
+        <button class="pl-btn">- REMOVE</button>
+        <button class="pl-btn">SEL ALL</button>
+        <div class="pl-info">4 TRACKS / 15:27 TOTAL</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
