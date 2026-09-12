@@ -511,7 +511,7 @@ body {
 }
 
 /* ==========================================================================
-   PLAYLIST & VIDEO WINDOW
+   PLAYLIST WINDOW
    ========================================================================== */
 
 .playlist-window {
@@ -521,61 +521,36 @@ body {
 }
 
 .playlist-body {
-  display: flex;
-  gap: 8px;
   padding: 6px;
 }
 
-.video-container {
-  width: 200px;
-  height: 120px;
-  background: #000000;
-  border: 2px solid #000;
-  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.video-placeholder {
-  text-align: center;
-  color: #555566;
-  font-family: var(--font-mono);
-  font-size: 10px;
-}
-
-.video-screen-icon {
-  font-size: 28px;
-  margin-bottom: 4px;
-}
-
-.subtext {
-  font-size: 8px;
-  color: #444455;
-}
-
 .playlist-list {
-  flex: 1;
+  width: 100%;
   background: #080f08;
   border: 1px solid #003300;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.9);
-  padding: 4px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   font-family: var(--font-digital);
-  font-size: 15px;
-  height: 120px;
+  font-size: 16px;
+  height: 130px;
   overflow-y: auto;
 }
 
 .playlist-item {
   color: var(--lcd-green);
-  padding: 2px 4px;
+  padding: 2px 6px;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-radius: 1px;
+}
+
+.playlist-item:hover {
+  background: #002200;
 }
 
 .playlist-item.active {
