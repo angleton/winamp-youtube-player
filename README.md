@@ -1,6 +1,6 @@
 # ERAMP YouTube Web Player (with Pitchfork High-Granularity Control)
 
-A retro YouTube audio web player interface inspired by the classic **Winamp 2.x skin**, personalized as **ERAMP**, and paired with the **PaceMaker / Pitchfork** DSP plugin for fine-grained audio tempo, speed, and pitch control.
+A retro YouTube audio web player interface inspired by the classic **Winamp 2.x skin**, personalized as **ERAMP** and pronounced “air-amp,” and paired with the **PaceMaker / Pitchfork** DSP plugin for fine-grained audio tempo, speed, and pitch control.
 
 ---
 
