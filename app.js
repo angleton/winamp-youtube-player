@@ -23,7 +23,7 @@ function formatValue(controlName, value) {
 }
 
 function announceEvent(detail) {
-  const event = new CustomEvent('winamp:control', { detail });
+  const event = new CustomEvent('eramp:control', { detail });
   document.dispatchEvent(event);
   eventStatus.textContent = `Event: ${detail.type} (${detail.name})`;
 }
@@ -88,6 +88,6 @@ document.querySelector('#btn-reset-all').addEventListener('click', () => {
 });
 
 // Application code can react here without coupling the controls to playback yet.
-document.addEventListener('winamp:control', (event) => {
-  console.debug('Winamp control event', event.detail);
+document.addEventListener('eramp:control', (event) => {
+  console.debug('ERAMP control event', event.detail);
 });
