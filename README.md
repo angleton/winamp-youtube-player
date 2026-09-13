@@ -19,10 +19,12 @@ The prototype recreates the classic Winamp main window (dark metallic panels, be
 
 ## 🚀 Project Overview & Architecture
 
-### Current Stage: HTML5 / CSS UI Prototype
-* **Standalone UI (`index.html`, `styles.css`):** Pixel-styled HTML5 layout mimicking the classic Winamp main window, audio playlist, and Pitchfork plugin deck.
+### Current Stage: Interactive HTML5 UI Prototype
+* **Standalone UI (`index.html`, `styles.css`, `app.js`):** Pixel-styled HTML5 layout mimicking the classic Winamp main window, audio playlist, and Pitchfork plugin deck.
 * **Audio-First Design:** Focuses on pure audio playlist playback with no embedded video player screen.
 * **Granular Controls:** Speed slider configured for high-precision steps (`0.005x` increments), semitone pitch adjustments, and tempo sliders.
+* **Semantic Controls:** Transport buttons, toggle buttons, playlist items, checkboxes, and range sliders are real HTML controls with keyboard focus and accessible names.
+* **Event Hooks:** Controls dispatch a `winamp:control` `CustomEvent` on `document`. The current branch only reports and reflects input; it does not start playback or connect to YouTube yet.
 
 ### Planned Stack & Capabilities
 * **Rust + WebAssembly (Wasm):** Rust application state management, playlist handling, keyboard shortcuts, and player logic.
@@ -63,6 +65,7 @@ python3 -m http.server 8000
 winamp-youtube-player/
 ├── index.html        # HTML5 layout of Winamp & Pitchfork UI
 ├── styles.css        # Retro Winamp classic skin stylesheet
+├── app.js             # Interactive control events and display-only state
 ├── screenshot-ui.png # Screenshot of the current UI prototype
 └── README.md         # Project documentation & reference images
 ```
