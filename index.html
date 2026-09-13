@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Winamp Web Player (with Pitchfork Plugin UI)</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -18,8 +19,8 @@
       <div class="title-bar">
         <div class="title-bar-text">WINAMP - YOUTUBE PLAYER</div>
         <div class="title-bar-controls">
-          <button class="win-btn minimize" aria-label="Minimize">_</button>
-          <button class="win-btn close" aria-label="Close">X</button>
+          <button class="win-btn minimize" type="button" data-action="minimize" aria-label="Minimize main player">_</button>
+          <button class="win-btn close" type="button" data-action="close" aria-label="Close main player">X</button>
         </div>
       </div>
 
@@ -61,38 +62,39 @@
 
       <!-- Position / Track Scrubber -->
       <div class="scrubber-panel">
-        <input type="range" class="winamp-slider scrubber" min="0" max="100" value="0">
+        <label class="sr-only" for="scrubber">Track position</label>
+        <input type="range" class="winamp-slider scrubber" id="scrubber" data-control="scrubber" min="0" max="100" value="0">
       </div>
 
       <!-- Control Panel -->
       <div class="control-panel">
         <!-- Transport Buttons -->
         <div class="transport-buttons">
-          <button class="transport-btn prev" title="Previous Track">⏮</button>
-          <button class="transport-btn play" title="Play">▶</button>
-          <button class="transport-btn pause" title="Pause">⏸</button>
-          <button class="transport-btn stop" title="Stop">⏹</button>
-          <button class="transport-btn next" title="Next Track">⏭</button>
-          <button class="transport-btn eject" title="Open URL / Eject">⏏</button>
+          <button class="transport-btn prev" type="button" data-action="previous" title="Previous Track" aria-label="Previous track">⏮</button>
+          <button class="transport-btn play" type="button" data-action="play" title="Play" aria-label="Play">▶</button>
+          <button class="transport-btn pause" type="button" data-action="pause" title="Pause" aria-label="Pause">⏸</button>
+          <button class="transport-btn stop" type="button" data-action="stop" title="Stop" aria-label="Stop">⏹</button>
+          <button class="transport-btn next" type="button" data-action="next" title="Next Track" aria-label="Next track">⏭</button>
+          <button class="transport-btn eject" type="button" data-action="open" title="Open URL / Eject" aria-label="Open a YouTube URL or video ID">⏏</button>
         </div>
 
         <!-- Volume & Balance Sliders -->
         <div class="sliders-group">
           <div class="slider-row">
-            <label>VOL</label>
-            <input type="range" class="winamp-slider volume" min="0" max="100" value="80">
+            <label for="volume">VOL</label>
+            <input type="range" class="winamp-slider volume" id="volume" data-control="volume" min="0" max="100" value="80">
           </div>
           <div class="slider-row">
-            <label>BAL</label>
-            <input type="range" class="winamp-slider balance" min="-50" max="50" value="0">
+            <label for="balance">BAL</label>
+            <input type="range" class="winamp-slider balance" id="balance" data-control="balance" min="-50" max="50" value="0">
           </div>
         </div>
 
         <!-- Toggle Buttons (EQ, PL, Pitchfork) -->
         <div class="toggle-buttons">
-          <button class="toggle-btn active" id="btn-eq">EQ</button>
-          <button class="toggle-btn active" id="btn-pl">PL</button>
-          <button class="toggle-btn active" id="btn-pf">PITCH</button>
+          <button class="toggle-btn active" id="btn-eq" type="button" data-action="toggle-eq" aria-pressed="true">EQ</button>
+          <button class="toggle-btn active" id="btn-pl" type="button" data-action="toggle-playlist" aria-pressed="true">PL</button>
+          <button class="toggle-btn active" id="btn-pf" type="button" data-action="toggle-pitchfork" aria-pressed="true">PITCH</button>
         </div>
       </div>
     </div>
@@ -102,7 +104,7 @@
       <div class="title-bar">
         <div class="title-bar-text">PITCHFORK / PACEMAKER - TEMPO & SPEED CONTROL</div>
         <div class="title-bar-controls">
-          <button class="win-btn minimize" aria-label="Minimize">_</button>
+          <button class="win-btn minimize" type="button" data-action="minimize" aria-label="Minimize Pitchfork window">_</button>
         </div>
       </div>
 
@@ -110,7 +112,7 @@
         <div class="plugin-header">
           <span class="plugin-status-led active"></span>
           <span class="plugin-title">HIGH-GRANULARITY PLAYBACK CONTROL</span>
-          <button class="plugin-reset-btn" id="btn-reset-all">RESET ALL</button>
+          <button class="plugin-reset-btn" id="btn-reset-all" type="button" data-action="reset">RESET ALL</button>
         </div>
 
         <div class="plugin-sliders-grid">
@@ -121,14 +123,15 @@
               <span class="card-value" id="val-speed">1.000x</span>
             </div>
             <div class="slider-wrapper">
-              <input type="range" class="winamp-slider speed-slider" min="0.25" max="4.00" step="0.005" value="1.00">
+              <label class="sr-only" for="speed-slider">Playback speed</label>
+              <input type="range" class="winamp-slider speed-slider" id="speed-slider" data-control="speed" min="0.25" max="4.00" step="0.005" value="1.00">
             </div>
             <div class="preset-pills">
-              <button class="preset-pill">0.5x</button>
-              <button class="preset-pill active">1.0x</button>
-              <button class="preset-pill">1.25x</button>
-              <button class="preset-pill">1.5x</button>
-              <button class="preset-pill">2.0x</button>
+              <button class="preset-pill" type="button" data-speed="0.5">0.5x</button>
+              <button class="preset-pill active" type="button" data-speed="1.0">1.0x</button>
+              <button class="preset-pill" type="button" data-speed="1.25">1.25x</button>
+              <button class="preset-pill" type="button" data-speed="1.5">1.5x</button>
+              <button class="preset-pill" type="button" data-speed="2.0">2.0x</button>
             </div>
           </div>
 
@@ -139,11 +142,12 @@
               <span class="card-value" id="val-pitch">0.0 st</span>
             </div>
             <div class="slider-wrapper">
-              <input type="range" class="winamp-slider pitch-slider" min="-12.0" max="12.0" step="0.1" value="0.0">
+              <label class="sr-only" for="pitch-slider">Pitch in semitones</label>
+              <input type="range" class="winamp-slider pitch-slider" id="pitch-slider" data-control="pitch" min="-12.0" max="12.0" step="0.1" value="0.0">
             </div>
             <div class="card-options">
               <label class="checkbox-label">
-                <input type="checkbox" id="chk-preserve-pitch" checked>
+                <input type="checkbox" id="chk-preserve-pitch" data-control="preserve-pitch" checked>
                 <span>Preserve Pitch (Key Lock)</span>
               </label>
             </div>
@@ -156,7 +160,8 @@
               <span class="card-value" id="val-tempo">0.0%</span>
             </div>
             <div class="slider-wrapper">
-              <input type="range" class="winamp-slider tempo-slider" min="-50.0" max="100.0" step="0.5" value="0.0">
+              <label class="sr-only" for="tempo-slider">Tempo adjustment percentage</label>
+              <input type="range" class="winamp-slider tempo-slider" id="tempo-slider" data-control="tempo" min="-50.0" max="100.0" step="0.5" value="0.0">
             </div>
           </div>
         </div>
@@ -175,21 +180,22 @@
       <div class="playlist-body">
         <!-- Playlist Tracks List -->
         <div class="playlist-list">
-          <div class="playlist-item active">1. Retro Synthwave - Winamp Theme [03:45]</div>
-          <div class="playlist-item">2. Chiptune Symphony No. 9 [04:12]</div>
-          <div class="playlist-item">3. HTML5 & Wasm Audio Demo [02:30]</div>
-          <div class="playlist-item">4. Pitchfork High Precision Speed Test [05:00]</div>
+          <button class="playlist-item active" type="button" data-track="1">1. Retro Synthwave - Winamp Theme [03:45]</button>
+          <button class="playlist-item" type="button" data-track="2">2. Chiptune Symphony No. 9 [04:12]</button>
+          <button class="playlist-item" type="button" data-track="3">3. HTML5 & Wasm Audio Demo [02:30]</button>
+          <button class="playlist-item" type="button" data-track="4">4. Pitchfork High Precision Speed Test [05:00]</button>
         </div>
       </div>
 
       <div class="playlist-footer">
-        <button class="pl-btn">+ ADD URL</button>
-        <button class="pl-btn">- REMOVE</button>
-        <button class="pl-btn">SEL ALL</button>
+        <button class="pl-btn" type="button" data-action="add-url">+ ADD URL</button>
+        <button class="pl-btn" type="button" data-action="remove-track">- REMOVE</button>
+        <button class="pl-btn" type="button" data-action="select-all">SEL ALL</button>
         <div class="pl-info">4 TRACKS / 15:27 TOTAL</div>
       </div>
     </div>
 
   </div>
+  <p class="event-status" id="event-status" role="status" aria-live="polite">Ready for input events.</p>
 </body>
 </html>
