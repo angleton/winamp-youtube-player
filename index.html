@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winamp Web Player (with Pitchfork Plugin UI)</title>
+  <title>ErAMP Web Player (with Pitchfork Plugin UI)</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,10 +17,10 @@
     <div class="winamp-window main-window">
       <!-- Title Bar -->
       <div class="title-bar">
-        <div class="title-bar-text">WINAMP - YOUTUBE PLAYER</div>
+        <div class="title-bar-text tooltip-target" data-tooltip="Pronounced air-amp">ErAMP - YOUTUBE PLAYER</div>
         <div class="title-bar-controls">
-          <button class="win-btn minimize" type="button" data-action="minimize" aria-label="Minimize main player">_</button>
-          <button class="win-btn close" type="button" data-action="close" aria-label="Close main player">X</button>
+          <button class="win-btn minimize tooltip-target" type="button" data-action="minimize" data-tooltip="Minimize main player" aria-label="Minimize main player">_</button>
+          <button class="win-btn close tooltip-target" type="button" data-action="close" data-tooltip="Close main player" aria-label="Close main player">X</button>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
         </div>
         <div class="display-right">
           <div class="marquee-container">
-            <div class="marquee-text" id="track-title">1. Retro YouTube Player - Winamp 2.x Classic Theme</div>
+            <div class="marquee-text" id="track-title">1. Retro YouTube Player - ErAMP Classic Theme</div>
           </div>
           <div class="vis-container">
             <div class="spectrum-analyzer">
@@ -70,12 +70,12 @@
       <div class="control-panel">
         <!-- Transport Buttons -->
         <div class="transport-buttons">
-          <button class="transport-btn prev" type="button" data-action="previous" title="Previous Track" aria-label="Previous track">⏮</button>
-          <button class="transport-btn play" type="button" data-action="play" title="Play" aria-label="Play">▶</button>
-          <button class="transport-btn pause" type="button" data-action="pause" title="Pause" aria-label="Pause">⏸</button>
-          <button class="transport-btn stop" type="button" data-action="stop" title="Stop" aria-label="Stop">⏹</button>
-          <button class="transport-btn next" type="button" data-action="next" title="Next Track" aria-label="Next track">⏭</button>
-          <button class="transport-btn eject" type="button" data-action="open" title="Open URL / Eject" aria-label="Open a YouTube URL or video ID">⏏</button>
+          <button class="transport-btn prev tooltip-target" type="button" data-action="previous" data-tooltip="Previous track" aria-label="Previous track">⏮</button>
+          <button class="transport-btn play tooltip-target" type="button" data-action="play" data-tooltip="Play" aria-label="Play">▶</button>
+          <button class="transport-btn pause tooltip-target" type="button" data-action="pause" data-tooltip="Pause" aria-label="Pause">⏸</button>
+          <button class="transport-btn stop tooltip-target" type="button" data-action="stop" data-tooltip="Stop" aria-label="Stop">⏹</button>
+          <button class="transport-btn next tooltip-target" type="button" data-action="next" data-tooltip="Next track" aria-label="Next track">⏭</button>
+          <button class="transport-btn eject tooltip-target" type="button" data-action="open" data-tooltip="Open a YouTube URL or video ID" aria-label="Open a YouTube URL or video ID">⏏</button>
         </div>
 
         <!-- Volume & Balance Sliders -->
@@ -92,9 +92,9 @@
 
         <!-- Toggle Buttons (EQ, PL, Pitchfork) -->
         <div class="toggle-buttons">
-          <button class="toggle-btn active" id="btn-eq" type="button" data-action="toggle-eq" aria-pressed="true">EQ</button>
-          <button class="toggle-btn active" id="btn-pl" type="button" data-action="toggle-playlist" aria-pressed="true">PL</button>
-          <button class="toggle-btn active" id="btn-pf" type="button" data-action="toggle-pitchfork" aria-pressed="true">PITCH</button>
+          <button class="toggle-btn active tooltip-target" id="btn-eq" type="button" data-action="toggle-eq" data-tooltip="Toggle equalizer" aria-pressed="true">EQ</button>
+          <button class="toggle-btn active tooltip-target" id="btn-pl" type="button" data-action="toggle-playlist" data-tooltip="Toggle playlist" aria-pressed="true">PL</button>
+          <button class="toggle-btn active tooltip-target" id="btn-pf" type="button" data-action="toggle-pitchfork" data-tooltip="Toggle Pitchfork controls" aria-pressed="true">PITCH</button>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@
       <div class="title-bar">
         <div class="title-bar-text">PITCHFORK / PACEMAKER - TEMPO & SPEED CONTROL</div>
         <div class="title-bar-controls">
-          <button class="win-btn minimize" type="button" data-action="minimize" aria-label="Minimize Pitchfork window">_</button>
+          <button class="win-btn minimize tooltip-target" type="button" data-action="minimize" data-tooltip="Minimize Pitchfork window" aria-label="Minimize Pitchfork window">_</button>
         </div>
       </div>
 
@@ -112,7 +112,7 @@
         <div class="plugin-header">
           <span class="plugin-status-led active"></span>
           <span class="plugin-title">HIGH-GRANULARITY PLAYBACK CONTROL</span>
-          <button class="plugin-reset-btn" id="btn-reset-all" type="button" data-action="reset">RESET ALL</button>
+          <button class="plugin-reset-btn tooltip-target" id="btn-reset-all" type="button" data-action="reset" data-tooltip="Reset speed, pitch, and tempo">RESET ALL</button>
         </div>
 
         <div class="plugin-sliders-grid">
@@ -171,16 +171,16 @@
     <!-- PLAYLIST WINDOW -->
     <div class="winamp-window playlist-window">
       <div class="title-bar">
-        <div class="title-bar-text">WINAMP PLAYLIST</div>
+        <div class="title-bar-text">ErAMP PLAYLIST</div>
         <div class="title-bar-controls">
-          <button class="win-btn minimize" aria-label="Minimize">_</button>
+          <button class="win-btn minimize tooltip-target" data-tooltip="Minimize playlist window" aria-label="Minimize playlist window">_</button>
         </div>
       </div>
 
       <div class="playlist-body">
         <!-- Playlist Tracks List -->
         <div class="playlist-list">
-          <button class="playlist-item active" type="button" data-track="1">1. Retro Synthwave - Winamp Theme [03:45]</button>
+          <button class="playlist-item active" type="button" data-track="1">1. Retro Synthwave - ErAMP Theme [03:45]</button>
           <button class="playlist-item" type="button" data-track="2">2. Chiptune Symphony No. 9 [04:12]</button>
           <button class="playlist-item" type="button" data-track="3">3. HTML5 & Wasm Audio Demo [02:30]</button>
           <button class="playlist-item" type="button" data-track="4">4. Pitchfork High Precision Speed Test [05:00]</button>

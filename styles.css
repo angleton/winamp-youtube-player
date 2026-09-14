@@ -1,5 +1,5 @@
 /* ==========================================================================
-   WINAMP CLASSIC SKIN & PITCHFORK PLUGIN STYLESHEET
+  ErAMP CLASSIC SKIN & PITCHFORK PLUGIN STYLESHEET
    ========================================================================== */
 
 :root {
@@ -46,6 +46,41 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
+.tooltip-target {
+  position: relative;
+}
+
+.tooltip-target::after {
+  background: #050506;
+  border: 1px solid var(--accent-gold);
+  color: #ffffff;
+  content: attr(data-tooltip);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: normal;
+  left: 50%;
+  max-width: 220px;
+  opacity: 0;
+  padding: 4px 6px;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: calc(100% + 7px);
+  transform: translate(-50%, -3px);
+  transition: opacity 120ms ease, transform 120ms ease;
+  visibility: hidden;
+  white-space: normal;
+  width: max-content;
+  z-index: 10;
+}
+
+.tooltip-target:hover::after,
+.tooltip-target:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  visibility: visible;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -75,7 +110,7 @@ body {
 }
 
 /* ==========================================================================
-   WINAMP CONTAINER & WINDOW SHELL
+  ErAMP CONTAINER & WINDOW SHELL
    ========================================================================== */
 
 .winamp-container {
