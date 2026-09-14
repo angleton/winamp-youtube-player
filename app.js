@@ -89,5 +89,5 @@ document.querySelector('#btn-reset-all').addEventListener('click', () => {
 
 // Application code can react here without coupling the controls to playback yet.
 document.addEventListener('eramp:control', (event) => {
-  console.debug('ERAMP control event', event.detail);
+  console.debug('ErAMP control event', event.detail);
 });
