@@ -17,7 +17,7 @@
     <div class="winamp-window main-window">
       <!-- Title Bar -->
       <div class="title-bar">
-        <div class="title-bar-text tooltip-target" data-tooltip="Pronounced air-amp">ErAMP - YOUTUBE PLAYER</div>
+        <button class="title-bar-text title-bar-login tooltip-target" id="youtube-login" type="button" data-tooltip="Sign in to YouTube" aria-label="Sign in to YouTube">YOUTUBE LOGIN</button>
         <div class="title-bar-controls">
           <button class="win-btn minimize tooltip-target" type="button" data-action="minimize" data-tooltip="Minimize main player" aria-label="Minimize main player">_</button>
           <button class="win-btn close tooltip-target" type="button" data-action="close" data-tooltip="Close main player" aria-label="Close main player">X</button>
@@ -178,20 +178,19 @@
       </div>
 
       <div class="playlist-body">
-        <!-- Playlist Tracks List -->
-        <div class="playlist-list">
-          <button class="playlist-item active" type="button" data-track="1">1. Retro Synthwave - ErAMP Theme [03:45]</button>
-          <button class="playlist-item" type="button" data-track="2">2. Chiptune Symphony No. 9 [04:12]</button>
-          <button class="playlist-item" type="button" data-track="3">3. HTML5 & Wasm Audio Demo [02:30]</button>
-          <button class="playlist-item" type="button" data-track="4">4. Pitchfork High Precision Speed Test [05:00]</button>
+        <div class="playlist-source" id="playlist-source-row" hidden>
+          <label for="favorites-select">FAVORITES</label>
+          <select id="favorites-select" aria-label="Select Favorites list"></select>
         </div>
+        <!-- Playlist Tracks List -->
+        <div class="playlist-list" id="playlist-list" aria-label="Favorite videos"></div>
       </div>
 
       <div class="playlist-footer">
         <button class="pl-btn" type="button" data-action="add-url">+ ADD URL</button>
         <button class="pl-btn" type="button" data-action="remove-track">- REMOVE</button>
         <button class="pl-btn" type="button" data-action="select-all">SEL ALL</button>
-        <div class="pl-info">4 TRACKS / 15:27 TOTAL</div>
+        <div class="pl-info" id="playlist-info">FAVORITES</div>
       </div>
     </div>
 

@@ -153,6 +153,17 @@ body {
   text-shadow: 1px 1px 0 #000000;
 }
 
+.title-bar-login {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.title-bar-login:hover {
+  color: #ffffff;
+}
+
 .title-bar-controls {
   display: flex;
   gap: 3px;
@@ -580,6 +591,28 @@ body {
 
 .playlist-body {
   padding: 6px;
+}
+
+.playlist-source {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.playlist-source label,
+.playlist-source select {
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.playlist-source select {
+  background: #080f08;
+  border: 1px solid #003300;
+  flex: 1;
+  min-width: 0;
+  padding: 2px 4px;
 }
 
 .playlist-list {
